@@ -475,6 +475,11 @@ namespace GameServerInfo
 		/// Counter-Strike: Source
 		/// </summary>
 		CounterStrikeSource = GameProtocol.Source,
+        /// <summary>
+        /// Left4Dead
+        /// </summary>
+        Left4Dead = GameProtocol.Source,
+
 		#endregion
 		/// <summary>
 		/// Not listed game
