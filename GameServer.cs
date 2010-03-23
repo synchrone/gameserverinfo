@@ -45,6 +45,9 @@ namespace GameServerInfo
 		{
 			switch ( (GameProtocol)_type )
 			{
+                case GameProtocol.Samp:
+                    _serverInfo = new Samp(_host, _port);
+                    break;
 				case GameProtocol.Ase:
 					_serverInfo = new Ase( _host, _port );
 					break;

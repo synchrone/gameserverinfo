@@ -65,6 +65,7 @@
     <Compile Include="Protocols\GameSpy2.cs" />
     <Compile Include="Protocols\HalfLife.cs" />
     <Compile Include="Protocols\Quake3.cs" />
+    <Compile Include="Protocols\Samp.cs" />
     <Compile Include="Protocols\Source.cs" />
   </ItemGroup>
   <ItemGroup />

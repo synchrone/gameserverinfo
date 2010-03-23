@@ -37,6 +37,10 @@ namespace GameServerInfo
 	public enum GameType
 	{
 		#region Ase
+        /// <summary>
+        /// SAMP
+        /// </summary>
+        GtaSA = GameProtocol.Samp,
 		/// <summary>
 		/// Multi-Theft Auto
 		/// </summary>
@@ -491,7 +495,11 @@ namespace GameServerInfo
 	/// Gameserver protocol
 	/// </summary>
 	public enum GameProtocol
-	{
+    {
+        /// <summary>
+        /// GtaSA
+        /// </summary>
+        Samp,
 		/// <summary>
 		/// The all seeing eye
 		/// </summary>
