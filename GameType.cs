@@ -484,6 +484,7 @@ namespace GameServerInfo
         /// </summary>
         Left4Dead = GameProtocol.Source,
 
+        Left4Dead2 = GameProtocol.Source,
 		#endregion
 		/// <summary>
 		/// Not listed game
