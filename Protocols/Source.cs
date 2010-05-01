@@ -34,12 +34,12 @@ namespace GameServerInfo
 		/// Querys the serverinfos
 		/// </summary>
 		public override void GetServerInfo()
-		{				
+		{
+            //Query( _QUERY_GET_CHALLENGE );
+            //ParseChallenge();
+
 			Query( _QUERY_DETAILS+Encoding.Default.GetString(new Byte[] { 0x00 }));
 			ParseDetails();
-			
-			//Query( _QUERY_GET_CHALLENGE );
-			//ParseChallenge();
 
 			//Query( _QUERY_RULES+this.challenge );
 			//ParseRules();

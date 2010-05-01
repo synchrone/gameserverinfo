@@ -160,7 +160,8 @@ namespace GameServerInfo
 		/// <summary>
 		/// Counter-Strike v 48 protocol
 		/// </summary>
-		CounterStrikev48 = GameProtocol.Source,
+        CounterStrikev48 = GameProtocol.HalfLife, 
+            //due to dproto trouble, query protocol even for 48 servers should be HL's one. Normally - Source
 		/// <summary>
 		/// Counter-Strike: Condition Zero
 		/// </summary>

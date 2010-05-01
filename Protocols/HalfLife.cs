@@ -41,11 +41,11 @@ namespace GameServerInfo
 			Query( _QUERY_DETAILS );
 			ParseDetails();
 
-			Query( _QUERY_RULES );
-			ParseRules();
+			//Query( _QUERY_RULES );
+			//ParseRules();
 
-			Query( _QUERY_PLAYERS );
-			ParsePlayers();
+			//Query( _QUERY_PLAYERS );
+			//ParsePlayers();
 		}
 
 		/// <summary>

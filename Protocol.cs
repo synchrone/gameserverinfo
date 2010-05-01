@@ -402,7 +402,13 @@ namespace GameServerInfo
 		{
 			get
 			{
-				return Int16.Parse( _params["maxplayers"] );
+                try
+                {
+                    return Int16.Parse(_params["maxplayers"]);
+                }
+                catch {
+                    return -1;
+                }
 			}
 		}
 		#endregion
