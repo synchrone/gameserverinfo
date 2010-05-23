@@ -107,7 +107,13 @@ namespace GameServerInfo
 		public override int MaxPlayers
 		{
 			get {
-				return Int16.Parse( _params["sv_maxclients"] );
+                try
+                {
+                    return Int16.Parse(_params["sv_maxclients"]);
+                }
+                catch {
+                    return 0;
+                }
 			}
 		}
 
