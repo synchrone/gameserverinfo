@@ -56,6 +56,7 @@ namespace GameServerInfo
 				//ip = Dns.Resolve( host ).AddressList[0];
 			}
 			_remoteIpEndPoint = new IPEndPoint( ip, port );
+            _isOnline = true;
 		}
         protected void Connect() {
             Connect(_host, _port);
