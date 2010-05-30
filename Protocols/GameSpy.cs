@@ -14,7 +14,8 @@ namespace GameServerInfo
 
 		/// <param name="host"></param>
 		/// <param name="port"></param>
-		public GameSpy( string host, int port )
+        public GameSpy(string host, int port)
+            : base(host, port)
 		{
 			base._protocol = GameProtocol.GameSpy;
 			Connect( host, port );
@@ -25,6 +26,7 @@ namespace GameServerInfo
 		/// </summary>
 		public override void GetServerInfo()
 		{
+            base.GetServerInfo();
 			if ( !IsOnline )
 			{
 				return;

@@ -25,12 +25,19 @@ namespace GameServerInfo
 		protected StringDictionary _params;
 		protected StringCollection _teams;
 
+        internal string _host;
+        internal int _port;
+
 		public Protocol()
 		{
 			_players = new PlayerCollection();
 			_params = new StringDictionary();
 			_teams = new StringCollection();
 		}
+        public Protocol(string host, int port) : this() {
+            _host = host;
+            _port = port;
+        }
 
 		#region Protocted members
 		protected void Connect( string host, int port )
@@ -50,10 +57,13 @@ namespace GameServerInfo
 			}
 			_remoteIpEndPoint = new IPEndPoint( ip, port );
 		}
+        protected void Connect() {
+            Connect(_host, _port);
+        }
 
 		protected void Query( string request )
 		{
-            if (_queryInProgress) { throw new Exception("Another query for this server is in progress"); }
+            if (_queryInProgress) { throw new InvalidOperationException("Another query for this server is in progress"); }
             _queryInProgress = true;
 			_readBuffer = new byte[100 * 1024]; // 100kb should be enought
 			EndPoint _remoteEndPoint = (EndPoint)_remoteIpEndPoint;
@@ -117,8 +127,10 @@ namespace GameServerInfo
 				}
 				catch ( System.Net.Sockets.SocketException e)
 				{
+#if DEBUG_QUERY
                     System.Diagnostics.Trace.TraceError("Socket exception " + e.SocketErrorCode + " " + e.Message);
-					break;
+#endif
+                    break;
 				}
 			} while ( read > 0 );
 
@@ -327,7 +339,13 @@ namespace GameServerInfo
 		/// <summary>
 		/// Querys the serverinfos
 		/// </summary>
-		public abstract void GetServerInfo();
+        public virtual void GetServerInfo()
+        {
+            if (!IsOnline)
+            {
+                this.Connect(); //try reconnect
+            }
+        }
 
 		/// <summary>
 		/// Gets the server name

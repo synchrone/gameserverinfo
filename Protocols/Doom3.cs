@@ -7,8 +7,9 @@ namespace GameServerInfo
 	internal class Doom3 : GameServerInfo.Protocol
 	{
 		private const string _QUERY_STATUS = @"ÿÿgetInfo";
-		
-		public Doom3( string host, int port )
+
+        public Doom3(string host, int port)
+            : base(host, port)
 		{
 			base._protocol = GameProtocol.Doom3;
 			Connect( host, port );
@@ -16,6 +17,7 @@ namespace GameServerInfo
 
 		public override void GetServerInfo()
 		{
+            base.GetServerInfo();
 			if ( !IsOnline )
 			{
 				return;

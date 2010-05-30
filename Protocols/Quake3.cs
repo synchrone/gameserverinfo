@@ -12,7 +12,8 @@ namespace GameServerInfo
 		private const string _QUERY_STATUS = @"ÿÿÿÿgetstatus";
 		#endregion
 
-		public Quake3( string host, int port ) : base()
+        public Quake3(string host, int port)
+            : base(host, port)
 		{
 			base._protocol = GameProtocol.Quake3;
 			Connect( host, port );
@@ -23,6 +24,7 @@ namespace GameServerInfo
 		/// </summary>
 		public override void GetServerInfo()
 		{
+            base.GetServerInfo();
 			if ( !IsOnline )
 			{
 				return;

@@ -8,34 +8,18 @@ namespace GameServerInfo
     class Samp : GameServerInfo.Protocol
     {
         byte[] iQuery = new byte[10];
-        int port;
 
-        public Samp(string _host, int _port)
+        public Samp(string host, int port)
+            : base(host, port)
         {
             base._protocol = GameProtocol.Samp;
-           /* string[] ipParts = new string[4];
-
-            try
-            {
-                IPAddress.Parse(_host);
-                ipParts = _host.ToString().Split(".");
-            }
-            catch (FormatException) {
-                ipParts = Dns.GetHostEntry(_host).AddressList[0].ToString().Split(".");
-            }
-            Array.Copy(Encoding.Default.GetBytes("SAMP"), 0, iQuery, 0, 4);
-            Array.Copy(Encoding.Default.GetBytes(ipParts), 0, iQuery, 4, 4);
-            iQuery[8] = (byte)(_port & 0xFF);
-            iQuery[9] = (byte)(_port >> 8 & 0xFF);
-            iQuery[10] = Encoding.Default.GetBytes("i")[0];*/
             iQuery = new byte[] { (byte)'S', (byte)'A', (byte)'M', (byte)'P', 0x21, 0x21, 0x21, 0x21, 0x00, 0x00, (byte)'i' };
-            Connect(_host, _port);
-            
-
+            Connect(host, port);
         }
 
         public override void GetServerInfo()
         {
+            base.GetServerInfo();
             if (!IsOnline) { return; }
             Query(Encoding.Default.GetString(iQuery));
             _params["passworded"]=(Response[11]==0 ? true : false).ToString();

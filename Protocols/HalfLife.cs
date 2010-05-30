@@ -23,7 +23,8 @@ namespace GameServerInfo
 
 		/// <param name="host">Serverhost address</param>
 		/// <param name="port">Serverport</param>
-		public HalfLife( string host, int port )
+        public HalfLife(string host, int port)
+            : base(host, port)
 		{
 			base._protocol = GameProtocol.HalfLife;
 			Connect( host, port );
@@ -34,6 +35,7 @@ namespace GameServerInfo
 		/// </summary>
 		public override void GetServerInfo()
 		{
+            base.GetServerInfo();
 			if ( !IsOnline )
 			{
 				return;

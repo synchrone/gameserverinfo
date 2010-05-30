@@ -14,7 +14,8 @@ namespace GameServerInfo
 //		} );
 		#endregion
 
-		public Ase( string host, int port )
+        public Ase(string host, int port)
+            : base(host, port)
 		{
 			base._protocol = GameProtocol.Ase;
 			Connect( host, port );
@@ -22,6 +23,7 @@ namespace GameServerInfo
 
 		public override void GetServerInfo()
 		{
+            base.GetServerInfo();
 			if ( !IsOnline )
 			{
 				return;
