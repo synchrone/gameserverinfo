@@ -70,7 +70,7 @@ namespace GameServerInfo
 			_params["mapname"] = ReadNextParam();
 			_params["mod"] = ReadNextParam();
 			_params["modname"] = ReadNextParam();
-			_params["playernum"] = Response[Offset++].ToString();
+            _params["numplayers"] = Response[Offset++].ToString();
 			_params["maxplayers"] = Response[Offset++].ToString();
 			_params["protocolver"] = Response[Offset++].ToString();
 

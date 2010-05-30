@@ -149,7 +149,9 @@ namespace GameServerInfo
 			}
 			else
 			{
+#if DEBUG_QUERY
                 System.Diagnostics.Trace.TraceError("Answer is either zero-length or exceeds buffer length");
+#endif
 				_isOnline = false;
 			}
 			_responseString = System.Text.Encoding.Default.GetString( _readBuffer );

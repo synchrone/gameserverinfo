@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
-[assembly: AssemblyVersion("1.0.1.0")]
+[assembly: AssemblyVersion("1.0.1.1")]
 
 [assembly:ComVisible(false)]
 [assembly:CLSCompliant(true)]
