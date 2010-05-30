@@ -15,6 +15,7 @@ namespace GameServerInfo
 		private int _timeout = 1500, _offset;
 		private DateTime _scanTime;
 		private bool _debugMode;
+        private bool _queryInProgress = false;
 
 		protected string _requestString = "", _responseString = "";
 		protected bool _isOnline = true;
@@ -52,6 +53,8 @@ namespace GameServerInfo
 
 		protected void Query( string request )
 		{
+            if (_queryInProgress) { throw new Exception("Another query for this server is in progress"); }
+            _queryInProgress = true;
 			_readBuffer = new byte[100 * 1024]; // 100kb should be enought
 			EndPoint _remoteEndPoint = (EndPoint)_remoteIpEndPoint;
 			_packages = 0;
@@ -112,30 +115,32 @@ namespace GameServerInfo
 					bufferOffset += read;
 					_packages++;
 				}
-				catch ( System.Net.Sockets.SocketException)
+				catch ( System.Net.Sockets.SocketException e)
 				{
-			
+                    System.Diagnostics.Trace.TraceError("Socket exception " + e.SocketErrorCode + " " + e.Message);
 					break;
 				}
 			} while ( read > 0 );
 
 			_scanTime = DateTime.Now;
 
-			if ( bufferOffset > 0 && bufferOffset != _readBuffer.Length )
+			if ( bufferOffset > 0 && bufferOffset < _readBuffer.Length )
 			{
 				byte[] temp = new byte[bufferOffset];
 				for ( int i = 0; i < temp.Length; i++ )
 				{
-					temp[i] = _readBuffer[i];
+                    temp[i] = _readBuffer[i];
 				}
 				_readBuffer = temp;
 				temp = null;
 			}
 			else
 			{
+                System.Diagnostics.Trace.TraceError("Answer is either zero-length or exceeds buffer length");
 				_isOnline = false;
 			}
 			_responseString = System.Text.Encoding.Default.GetString( _readBuffer );
+            _queryInProgress = false;
 
 			if ( _debugMode )
 			{
